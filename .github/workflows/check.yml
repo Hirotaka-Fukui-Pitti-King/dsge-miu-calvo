@@ -1,0 +1,23 @@
+name: Проверка модели
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  proverka:
+    name: Проверка уравнений и расчётов
+    runs-on: ubuntu-latest
+    steps:
+      - name: Получение исходного кода
+        uses: actions/checkout@v4
+      - name: Настройка языка программирования
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Установка зависимостей
+        run: python -m pip install -r requirements.txt
+      - name: Проверка расчётов
+        run: python -m unittest discover -s tests -v
+      - name: Построение графиков
+        run: python -m src.experiment
