@@ -389,15 +389,15 @@ $
 \frac{\omega\tau h\beta}{1-h\beta\lambda}.
 $
 
-The aggregate investment Euler equation is modified consistently with the same marginal adjustment cost in both capital structures. At first order the direct resource cost of adjustment vanishes around the symmetric steady state, but its effect on marginal investment decisions does not.
+The aggregate investment Euler equation must include the installed-capital derivative of adjustment costs. Since $-\widetilde{\Psi}_K=\delta\widetilde q$, its first-order forward-$q$ coefficient is $\beta$, not $\beta(1-\delta)$. We corrected this omission in the original matched-cost IRFs. The direct resource cost of adjustment vanishes at first order around the symmetric steady state, but marginal investment costs do not.
 
 | Impact effect or structural coefficient | Common capital, Calvo | Firm-specific capital, Calvo |
 |---|---:|---:|
 | Phillips-curve slope | 0.085833 | 0.022894 |
-| Output, monetary-policy innovation (%) | -0.322 | -0.832 |
-| Investment, monetary-policy innovation (%) | -1.263 | -3.236 |
-| Inflation, monetary-policy innovation (percentage points) | -0.289 | -0.179 |
-| Output, technology innovation (%) | 1.064 | 0.764 |
+| Output, monetary-policy innovation (%) | -0.325 | -0.846 |
+| Investment, monetary-policy innovation (%) | -1.288 | -3.318 |
+| Inflation, monetary-policy innovation (percentage points) | -0.290 | -0.180 |
+| Output, technology innovation (%) | 1.075 | 0.774 |
 
 : First-order matched-adjustment-cost comparison, \(\phi_I=4\). Technology and monetary innovations are 0.01 and 0.0025 log units, respectively; these are simulated local responses, not estimated causal effects. {#tbl-stage3-first-order}
 
@@ -405,7 +405,7 @@ The aggregate investment Euler equation is modified consistently with the same m
 
 ![Investment responses to the same monetary-policy-rule innovation under matched investment adjustment costs.](figures/stage3/monetary_investment.svg){#fig-stage3-investment width=90%}
 
-The adapted relative-capital-price system has stable eigenvalues 0.73227 and 0.95155; its algebraic first-order pricing and investment conditions hold to better than \(10^{-11}\). The four reduced aggregate linear systems satisfy the Schur rank and root-count conditions for the benchmark calibration.
+The adapted relative-capital-price system has stable eigenvalues 0.73227 and 0.95155. Its investment and price policies were independently recovered from the firm's linearized investment Euler equation and the discounted Calvo reset-price FOC, without imposing the Woodford quartic as an identifying restriction. The independent coefficient-equation residual is approximately $1.4\\times10^{-15}$, and the discounted reset-price FOC residual is below $10^{-15}$ on both calibrated shock paths. The first-order CES price-index and relative-capital mean identities are also satisfied by the two-branch distribution-moment transition. The four reduced aggregate linear systems satisfy the Schur rank and root-count conditions at the benchmark calibration.
 
 **Interpretation and limitations.** This is a solved first-order *aggregate reduction* built on the adapted Woodford relative-price equations, **not** a numerical solution of the full nonlinear firm Bellman problem or the joint capital-price distribution. Consequently, neither firm-specific second-order welfare nor comparable capital/equity premia have been computed. The earlier common-capital CEV and premium numbers refer to a different adjustment-cost specification and cannot establish the paper's full welfare-and-asset-pricing research question.
 
