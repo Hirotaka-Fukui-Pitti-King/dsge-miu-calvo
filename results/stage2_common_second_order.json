@@ -1,0 +1,190 @@
+{
+  "flex": {
+    "steady_eigenvalues": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.9513753056546581,
+        0.0
+      ],
+      [
+        0.9,
+        0.0
+      ],
+      [
+        0.8,
+        0.0
+      ],
+      [
+        1.5000000000000004,
+        0.0
+      ],
+      [
+        1.0726325105646464,
+        0.0
+      ]
+    ],
+    "first_order_residual": 3.499629297381544e-15,
+    "second_order_coefficient_residual": 2.220446049250313e-16,
+    "volatility_coefficient_residual": 1.166275547401197e-22,
+    "stochastic_equilibrium": {
+      "max_equilibrium_residual": 7.8647611797582e-15,
+      "capital_euler_residual": 2.8374353564294497e-15,
+      "bond_euler_residual": -7.8647611797582e-15,
+      "price_F_residual": -1.0713252826832546e-15,
+      "price_G_residual": -1.249879496463796e-15,
+      "risk_free": 1.0101010234439751,
+      "expected_capital": 1.0101010389609064,
+      "risk_premium": 1.5516931295422864e-08,
+      "covariance_premium": 1.551693395858513e-08,
+      "asset_pricing_residual": -2.7755575615628914e-15,
+      "covariance_identity_error": 1.4043126854735008e-16
+    },
+    "half_volatility": {
+      "max_equilibrium_residual": 1.6069879240248816e-15,
+      "capital_euler_residual": 2.1941636317442262e-16,
+      "bond_euler_residual": -4.73160912951915e-16,
+      "price_F_residual": -1.2855903392199047e-15,
+      "price_G_residual": -1.6069879240248816e-15,
+      "risk_free": 1.0101010134367516,
+      "expected_capital": 1.0101010173159828,
+      "risk_premium": 3.879231158521179e-09,
+      "covariance_premium": 3.87923140459087e-09,
+      "asset_pricing_residual": -2.220446049250313e-16,
+      "covariance_identity_error": -2.1782210640879255e-17
+    },
+    "conditional_welfare": 548.8726596991015,
+    "unconditional_welfare": 548.9121163161219,
+    "mean_states": [
+      6.366362714002147e-06,
+      0.0,
+      0.0,
+      1.0010030825219532e-20
+    ],
+    "mean_jump": [
+      3.642953657922323e-06,
+      -4.672123213518163e-07,
+      -1.1594390693996956e-06,
+      -2.318878138799394e-06,
+      -2.318878138799393e-06
+    ]
+  },
+  "calvo": {
+    "steady_eigenvalues": [
+      [
+        0.9454819988708643,
+        0.0
+      ],
+      [
+        0.7500000000000002,
+        0.0
+      ],
+      [
+        0.8999999999999999,
+        0.0
+      ],
+      [
+        0.8,
+        0.0
+      ],
+      [
+        2.2435783454882356,
+        0.0
+      ],
+      [
+        1.6639033049398197,
+        0.0
+      ],
+      [
+        1.346801346801362,
+        0.0
+      ],
+      [
+        1.0683810917126535,
+        0.0
+      ]
+    ],
+    "first_order_residual": 1.0658141036401503e-14,
+    "second_order_coefficient_residual": 5.684341886080802e-14,
+    "volatility_coefficient_residual": 4.743384504624082e-20,
+    "stochastic_equilibrium": {
+      "max_equilibrium_residual": 4.803926486999549e-09,
+      "capital_euler_residual": -7.294161979647302e-11,
+      "bond_euler_residual": 7.834934321949815e-12,
+      "price_F_residual": -4.803926486999549e-09,
+      "price_G_residual": -2.198278387300407e-09,
+      "risk_free": 1.0100991894496079,
+      "expected_capital": 1.0100992021648667,
+      "risk_premium": 1.2715258845830135e-08,
+      "covariance_premium": 1.264158057877156e-08,
+      "asset_pricing_residual": 7.294165271787278e-11,
+      "covariance_identity_error": -3.722886251147065e-17
+    },
+    "half_volatility": {
+      "max_equilibrium_residual": 3.0022524890656157e-10,
+      "capital_euler_residual": -4.558994732577681e-12,
+      "bond_euler_residual": 4.896660413086025e-13,
+      "price_F_residual": -3.0022524890656157e-10,
+      "price_G_residual": -1.3738320098476388e-10,
+      "risk_free": 1.010100554941879,
+      "expected_capital": 1.0101005581071243,
+      "risk_premium": 3.1652453991171114e-09,
+      "covariance_premium": 3.160640469900994e-09,
+      "asset_pricing_residual": 4.558797783715818e-12,
+      "covariance_identity_error": 8.504491817856928e-17
+    },
+    "conditional_welfare": 548.7331135585963,
+    "unconditional_welfare": 548.7488093891095,
+    "mean_states": [
+      -2.8518234217644632e-05,
+      0.0,
+      0.0,
+      2.8599229767269652e-05
+    ],
+    "mean_jump": [
+      -3.638258204650614e-05,
+      9.255810774908594e-06,
+      8.401251806335274e-07,
+      0.0002867631676672844,
+      0.00023516304386983331
+    ]
+  },
+  "shock_standard_deviations": {
+    "technology": 0.001,
+    "monetary": 0.00025
+  },
+  "cev_calvo_relative_flex": {
+    "conditional": -0.0013944882015276372,
+    "unconditional": -0.001631736538083453
+  },
+  "legacy_volatility_stress_test": {
+    "flex": {
+      "max_equilibrium_residual": 7.724673293684937e-11,
+      "capital_euler_residual": 2.9203845337193485e-11,
+      "bond_euler_residual": -7.724673293684937e-11,
+      "price_F_residual": 2.1426505653665078e-16,
+      "price_G_residual": 0.0,
+      "risk_free": 1.010102344416182,
+      "expected_capital": 1.010103896184603,
+      "risk_premium": 1.5517684208710136e-06,
+      "covariance_premium": 1.551797919684198e-06,
+      "asset_pricing_residual": -2.920397257355489e-11,
+      "covariance_identity_error": 1.879785076491533e-16
+    },
+    "calvo": {
+      "max_equilibrium_residual": 4.846348081633763e-05,
+      "capital_euler_residual": -7.283363598907835e-07,
+      "bond_euler_residual": 7.836448140688572e-08,
+      "price_F_residual": -4.846348081633763e-05,
+      "price_G_residual": -2.2177469654250533e-05,
+      "risk_free": 1.0099187487214396,
+      "expected_capital": 1.0099207355659383,
+      "risk_premium": 1.986844498702567e-06,
+      "covariance_premium": 1.2512839534980813e-06,
+      "asset_pricing_residual": 7.283363598897807e-07,
+      "covariance_identity_error": -2.3729945654684444e-17
+    }
+  }
+}
