@@ -60,6 +60,9 @@ jobs:
       - name: Собрать статью в PDF через Typst
         run: quarto render paper.qmd --to typst
 
+      - name: Установить средства проверки PDF
+        run: sudo apt-get install -y poppler-utils
+
       - name: Проверить PDF и исходный файл Typst
         run: |
           test -s paper.pdf
