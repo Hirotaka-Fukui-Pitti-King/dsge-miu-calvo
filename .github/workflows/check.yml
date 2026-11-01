@@ -27,3 +27,4 @@ jobs:
         run: |
           python -m src.experiment
           python -m src.stage2_foundations
+          python -m src.stage3_experiment

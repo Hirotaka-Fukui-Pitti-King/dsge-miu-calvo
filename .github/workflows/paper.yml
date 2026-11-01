@@ -56,13 +56,16 @@ jobs:
           python -m src.stage2_equilibrium
           python -m src.stage2_foundations
           python -m paper.scripts.check_results
+          python -m src.stage3_experiment
       - name: Генерация рисунков на английском языке
         run: |
           python -m paper.scripts.make_figures
           python -m paper.scripts.stage2_figures
       - name: Проверка английского текста рисунков
         run: |
-          test "$(find paper/figures -name '*.svg' | wc -l)" -eq 14
+          test "$(find paper/figures -maxdepth 1 -name '*.svg' | wc -l)" -eq 14
+          test "$(find paper/figures/stage3 -name '*.svg' | wc -l)" -eq 18
+          grep -q 'Firm-specific / Calvo' paper/figures/stage3/monetary_output.svg
           grep -q 'Flexible prices' paper/figures/monetary_output.svg
           grep -q 'Calvo pricing' paper/figures/monetary_output.svg
       - name: Сборка PDF с использованием Quarto и Typst
@@ -94,7 +97,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add paper/article.pdf
+          git add paper/article.pdf paper/figures/stage3 results/stage3
           if ! git diff --cached --quiet; then
             git commit -m 'Обновить английскую статью в PDF'
             git push origin HEAD:main
