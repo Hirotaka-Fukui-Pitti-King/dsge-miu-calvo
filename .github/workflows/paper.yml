@@ -63,7 +63,9 @@ jobs:
           python -m paper.scripts.stage2_figures
       - name: Проверка английского текста рисунков
         run: |
-          test "$(find paper/figures -name '*.svg' | wc -l)" -eq 14
+          test "$(find paper/figures -maxdepth 1 -name '*.svg' | wc -l)" -eq 14
+          test "$(find paper/figures/stage3 -name '*.svg' | wc -l)" -eq 18
+          grep -q 'Firm-specific / Calvo' paper/figures/stage3/monetary_output.svg
           grep -q 'Flexible prices' paper/figures/monetary_output.svg
           grep -q 'Calvo pricing' paper/figures/monetary_output.svg
       - name: Сборка PDF с использованием Quarto и Typst
