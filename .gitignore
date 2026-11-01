@@ -10,3 +10,6 @@ Thumbs.db
 paper/*.pdf
 paper/*.typ
 paper/.quarto/
+
+# Временные копии рисунков статьи
+paper/assets/

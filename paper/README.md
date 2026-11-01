@@ -1,6 +1,6 @@
 # Научная статья и воспроизводимая сборка
 
-Исходный документ: `article.qmd`. Основной формат: Quarto → Typst → PDF. Библиографические записи находятся в `references.bib`. Рисунки строятся по результатам модели в каталоге `figures/`, а не вручную.
+Исходный документ: `article.qmd`. Основной формат: Quarto → Typst → PDF. Библиографические записи находятся в `references.bib`. Рисунки создаются в каталоге `figures/` и перед сборкой копируются в `paper/assets/` для соблюдения ограничений Typst на доступ к файлам.
 
 Порядок локального воспроизведения из корня репозитория:
 
@@ -10,6 +10,8 @@ python -m unittest discover -s tests -v
 python -m src.audit
 python -m src.experiment
 python -m paper.scripts.check_results
+New-Item -ItemType Directory -Force paper/assets | Out-Null
+Copy-Item figures/technology_vypusk.svg, figures/monetary_vypusk.svg, figures/monetary_investicii.svg, figures/monetary_potreblenie.svg paper/assets/
 quarto render paper/article.qmd --to typst
 ```
 

@@ -47,6 +47,10 @@ jobs:
           python -m src.audit
           python -m src.experiment
           python -m paper.scripts.check_results
+      - name: Копирование построенных рисунков в каталог статьи
+        run: |
+          mkdir -p paper/assets
+          cp figures/technology_vypusk.svg figures/monetary_vypusk.svg figures/monetary_investicii.svg figures/monetary_potreblenie.svg paper/assets/
       - name: Создание статьи в формате PDF с помощью Quarto и Typst
         run: quarto render paper/article.qmd --to typst
       - name: Проверка созданного PDF и кириллицы
