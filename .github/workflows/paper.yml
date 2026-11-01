@@ -57,6 +57,7 @@ jobs:
           python -m src.stage2_foundations
           python -m paper.scripts.check_results
           python -m src.stage3_experiment
+          python -m src.stage4b_experiment
       - name: Генерация рисунков на английском языке
         run: |
           python -m paper.scripts.make_figures
