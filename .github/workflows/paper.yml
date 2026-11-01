@@ -1,0 +1,63 @@
+name: Сборка научной статьи
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "paper/**"
+      - "src/**"
+      - "tests/**"
+      - "results/**"
+      - "requirements.txt"
+      - ".github/workflows/paper.yml"
+  pull_request:
+    paths:
+      - "paper/**"
+      - "src/**"
+      - "tests/**"
+      - "results/**"
+      - "requirements.txt"
+      - ".github/workflows/paper.yml"
+  workflow_dispatch:
+
+jobs:
+  sborka:
+    name: Проверка расчётов и создание PDF через Typst
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Получение исходного кода
+        uses: actions/checkout@v4
+      - name: Подготовка Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Установка шрифтов с поддержкой кириллицы
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core poppler-utils
+      - name: Установка зависимостей расчётов
+        run: python -m pip install -r requirements.txt
+      - name: Подготовка Quarto и Typst
+        uses: quarto-dev/quarto-actions/setup@v2
+      - name: Проверка модели
+        run: |
+          python -m unittest discover -s tests -v
+          python -m src.audit
+          python -m src.experiment
+          python -m paper.scripts.check_results
+      - name: Создание статьи в формате PDF с помощью Quarto и Typst
+        run: quarto render paper/article.qmd --to typst
+      - name: Проверка созданного PDF и кириллицы
+        run: |
+          test -s paper/article.pdf
+          pdfinfo paper/article.pdf | grep '^Pages:'
+          pdftotext paper/article.pdf - | grep -q 'Номинальная негибкость'
+      - name: Публикация PDF как артефакта выполнения
+        uses: actions/upload-artifact@v4
+        with:
+          name: statya-dsge-typst
+          path: paper/article.pdf
+          if-no-files-found: error
+          retention-days: 90
