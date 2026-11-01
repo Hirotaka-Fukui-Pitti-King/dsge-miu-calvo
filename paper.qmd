@@ -100,7 +100,7 @@ $$
 где \(\varepsilon>1\). Промежуточная фирма использует капитал и труд:
 
 $$
-Y_t(j)=A_t K_t(j)^\alpha \cdot N_t(j)^{1-\alpha},
+Y_t(j)=A_t\left(K_t(j)^{\alpha}\right)\left(N_t(j)^{1-\alpha}\right),
 \qquad 0<\alpha<1.
 $$
 
