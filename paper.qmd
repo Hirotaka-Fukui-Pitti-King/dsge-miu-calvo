@@ -114,7 +114,7 @@ $$
 агрегированное производство и условия спроса на факторы удовлетворяют
 
 $$
-Y_t=\frac{A_t K_t^\alpha \cdot N_t^{1-\alpha}}{\Delta_t},
+Y_t=\frac{A_t K_t^{\alpha} \cdot N_t^{1-\alpha}}{\Delta_t},
 \quad
 w_t=(1-\alpha)mc_t\frac{Y_t\Delta_t}{N_t},
 \quad
