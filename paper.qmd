@@ -100,7 +100,7 @@ $$
 где \(\varepsilon>1\). Промежуточная фирма использует капитал и труд:
 
 $$
-Y_t(j)=A_t K_t(j)^\alpha N_t(j)^{1-\alpha},
+Y_t(j)=A_t K_t(j)^\alpha \cdot N_t(j)^{1-\alpha},
 \qquad 0<\alpha<1.
 $$
 
@@ -114,7 +114,7 @@ $$
 агрегированное производство и условия спроса на факторы удовлетворяют
 
 $$
-Y_t=\frac{A_t K_t^\alpha N_t^{1-\alpha}}{\Delta_t},
+Y_t=\frac{A_t K_t^\alpha \cdot N_t^{1-\alpha}}{\Delta_t},
 \quad
 w_t=(1-\alpha)mc_t\frac{Y_t\Delta_t}{N_t},
 \quad
