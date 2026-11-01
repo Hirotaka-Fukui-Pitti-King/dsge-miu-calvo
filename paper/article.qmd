@@ -99,7 +99,7 @@ Y_t=\left(\int_0^1Y_t(j)^{(\varepsilon-1)/\varepsilon}\,dj\right)^{\varepsilon/(
 Y_t(j)=\left(\frac{P_t(j)}{P_t}\right)^{-\varepsilon}Y_t.
 $$
 
-Intermediate producer $j$ uses $Y_t(j)=A_t\,K_t(j)^{\alpha}\,N_t(j)^{1-\alpha}$. Labor and installed capital services can be reallocated across firms each period. Competitive factor markets imply common real marginal cost $mc_t$ and
+Intermediate producer $j$ employs a Cobb--Douglas production technology. Labor and installed capital services can be reallocated across firms each period. Competitive factor markets imply common real marginal cost $mc_t$ and
 
 $$
 \begin{aligned}
