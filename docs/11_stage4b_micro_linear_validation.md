@@ -110,9 +110,9 @@ p_{j,t}^{R}=\frac{\theta}{1-\theta}\pi_t-\psi h_{j,t}.
 
 Запуск воспроизводимого расчёта:
 
-\`\`\`powershell
+```powershell
 python -m src.stage4b_experiment
 python -m unittest discover -s tests -v
-\`\`\`
+```
 
 Данные генерируются в \`results/stage4b_first_order_micro.json\`. PR остаётся черновиком до решения нелинейного перехода.
