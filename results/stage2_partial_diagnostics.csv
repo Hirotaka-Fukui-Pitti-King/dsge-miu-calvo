@@ -1,0 +1,3 @@
+regime,technology_sd,monetary_sd,leading_covariance,quadrature_covariance,euler_residual,quantity_status
+flex,0.01,0.0025,1.5516923111732014e-06,1.5517967520841713e-06,7.035112230102669e-06,diagnostic_not_equilibrium_premium
+calvo,0.01,0.0025,1.2642885110051244e-06,1.2644436061329642e-06,9.750468015878866e-06,diagnostic_not_equilibrium_premium
