@@ -85,7 +85,8 @@ def _capital_euler(k_new,a_new,c_now,c_new,n_new,q_now,p,adjustment):
     output_new,_,i_new=_current(k_new,a_new,c_new,n_new,p)
     q_new=_q(k_new,i_new,p,adjustment)
     rho_new=p.sigma*c_new+(1+p.varphi)*n_new-k_new
-    return q_now+p.sigma*(c_new-c_now)-s['q']*rho_new-p.beta*(1-p.delta)*q_new
+    # Производная -Psi_K даёт +delta*q_new: (1-delta)+delta=1.
+    return q_now+p.sigma*(c_new-c_now)-s['q']*rho_new-p.beta*q_new
 
 
 def _map_calvo(z,p,adjustment,firm_specific):
