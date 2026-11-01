@@ -38,5 +38,25 @@ def main() -> None:
     print("Paper's numerical claims and monetary neutrality verified against the CSVs.")
 
 
+
+
+def check_second_order() -> None:
+    """Проверить численные заявления о решении общего капитала второго порядка."""
+    import json
+    data=json.loads((ROOT/'results'/'stage2_common_second_order.json').read_text(encoding='utf-8'))
+    assert abs(data['shock_standard_deviations']['technology']-0.001)<1e-14
+    assert abs(data['shock_standard_deviations']['monetary']-0.00025)<1e-14
+    a=data['flex'];b=data['calvo']
+    assert abs(a['stochastic_equilibrium']['risk_premium']-1.5516931295422864e-8)<1e-10
+    assert abs(b['stochastic_equilibrium']['risk_premium']-1.2715258845830135e-8)<1e-10
+    assert b['stochastic_equilibrium']['max_equilibrium_residual']<1e-8
+    assert abs(b['stochastic_equilibrium']['asset_pricing_residual'])<1e-10
+    assert abs(data['cev_calvo_relative_flex']['conditional']+0.0013944882015276372)<1e-5
+    assert abs(data['cev_calvo_relative_flex']['unconditional']+0.001631736538083453)<1e-5
+    qmd=(ROOT/'paper'/'article.qmd').read_text(encoding='utf-8')
+    for required in ('-0.13945%', '-0.16317%', 'Second-order stochastic allocation'):
+        assert required in qmd, required
+
 if __name__ == "__main__":
     main()
+    check_second_order()

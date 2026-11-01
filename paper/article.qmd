@@ -8,7 +8,7 @@ author:
 date: "2026-11-01"
 lang: en
 abstract: |
-  This paper studies how nominal price rigidity changes the responses of consumption, investment, output, employment, and inflation to technology and monetary-policy innovations in a model with capital accumulation. We compare flexible prices and Calvo pricing within the same monopolistically competitive economy, holding preferences, technology, the steady-state markup, and the monetary rule fixed. Under an illustrative calibration, a positive policy-rule innovation of 0.0025 log units reduces initial output by 0.431 percent and investment by 2.275 percent under Calvo pricing, whereas real allocations are unchanged under flexible prices. Following a 0.01 log-unit technology innovation, output rises by 1.337 percent with flexible prices and 1.250 percent with Calvo prices. Analytic steady-state relations, independent numerical differentiation of equilibrium conditions, and an ordered Schur decomposition corroborate the local first-order rational-expectations solutions. The results are simulated comparative statics, not estimates of policy effects or welfare costs.
+  This paper studies how nominal price rigidity changes the responses of consumption, investment, output, employment, and inflation to technology and monetary-policy innovations in a model with capital accumulation. We compare flexible prices and Calvo pricing within the same monopolistically competitive economy, holding preferences, technology, the steady-state markup, and the monetary rule fixed. Under an illustrative calibration, a positive policy-rule innovation of 0.0025 log units reduces initial output by 0.431 percent and investment by 2.275 percent under Calvo pricing, whereas real allocations are unchanged under flexible prices. Following a 0.01 log-unit technology innovation, output rises by 1.337 percent with flexible prices and 1.250 percent with Calvo prices. Analytic steady-state relations, independent numerical differentiation of equilibrium conditions, and an ordered Schur decomposition corroborate the local first-order rational-expectations solutions. These simulated comparisons are not empirical policy-effect estimates. A second-order local extension also computes illustrative common-capital welfare and physical-capital premia for small shock volatility; no firm-specific-capital equilibrium has been solved.
 keywords:
   - New Keynesian macroeconomics
   - Calvo pricing
@@ -99,7 +99,7 @@ Y_t=\left(\int_0^1Y_t(j)^{(\varepsilon-1)/\varepsilon}\,dj\right)^{\varepsilon/(
 Y_t(j)=\left(\frac{P_t(j)}{P_t}\right)^{-\varepsilon}Y_t.
 $$
 
-Intermediate producer $j$ uses $Y_t(j)=A_t(K_t(j)^{\alpha})(N_t(j)^{1-\alpha})$. Labor and installed capital services can be reallocated across firms each period. Competitive factor markets imply common real marginal cost $mc_t$ and
+Intermediate producer $j$ uses $Y_t(j)=A_tK_t(j)^\alpha N_t(j)^{1-\alpha}$. Labor and installed capital services can be reallocated across firms each period. Competitive factor markets imply common real marginal cost $mc_t$ and
 
 $$
 \begin{aligned}
@@ -292,61 +292,137 @@ Table @tbl-impact summarizes the initial responses in $100$ times log deviations
 
 The investment response accounts for much of the initial reduction in aggregate demand under nominal rigidity. The comparison isolates **price adjustment frequency**, because monopolistic power is present in both economies. It does not identify a monetary-policy shock in observational data and therefore does not yield an estimated causal policy effect.
 
+# Second-order stochastic allocation with a common capital market
+
+The first-order model can be extended **without changing the household, factor-market, or monetary-policy specifications**. Here capital services remain freely rentable by all intermediate producers. We retain both nonlinear Calvo pricing recursions and inherited price dispersion and use the benchmark zero-inflation steady state as the point of expansion. This is a computed second-order *local equilibrium*, not an exact global nonlinear solution. Firm-specific installed capital is not introduced in the results of this section.
+
+## Second-order solution and price dispersion
+
+Let $x_t=(\widehat k_t,\widehat a_t,v_t,\log\Delta_{t-1})'$ and let $y_t=(\widehat c_t,\pi_t,\widehat n_t,\widehat F_t,\widehat G_t)'$. Policy coefficients are computed from the nine original equilibrium conditions for $x_{t+1}$, the capital and nominal-bond Euler equations, the two Calvo recursion equations, and the contemporaneous Calvo price index. With innovation loading $W$, the local decision rule is
+
+$$
+y_t=H x_t+\tfrac12 H_{xx}[x_t,x_t]+\tfrac12H_{\varsigma\varsigma}\varsigma^2+O(3),
+$$
+
+and an analogous rule describes the state transition. The ordered generalized Schur decomposition identifies four stable states (one of which is inherited dispersion). Independent comparison with the first-order solver reproduces the original policy coefficients within $10^{-11}$. The complete Hessian and the shock-volatility correction satisfy the differentiated system within $10^{-10}$. Conditional Gaussian quadrature subsequently checks the *original nonlinear equations*, rather than just the differentiated coefficients.
+
+The dispersion recursion is dynamic:
+
+$$
+\Delta_t-1=\theta(\Delta_{t-1}-1)
++\frac{\varepsilon\theta}{2(1-\theta)}\pi_t^2+O(3).
+$$
+
+The coefficient on $\pi_t^2$ is 9 for the benchmark parameters. This term enters the second-order resource constraint and is absent at first order only when the initial dispersion is itself of second order. We use pruning to prevent higher-order terms from recursively generating spurious higher-order feedback during simulation.
+
+## Welfare and consumption equivalents
+
+Unlike the textbook quadratic-loss formula around an efficient steady state, our welfare calculation **retains the monopolistic distortion and the utility of real money balances**. For an initial deterministic steady state, conditional expected utility is $W(0)=E_0\sum_{t\geq0}\beta^t u(C_t,m_t,N_t)$. Unconditional welfare averages the same value function over the second-order stochastic stationary distribution. We compute both by a quadratic Bellman recursion and obtain the second-order stationary state covariance from a discrete Lyapunov equation. For the benchmark log-consumption utility, a consumption-equivalent change $\omega$ solves
+
+$$
+W^{\mathrm{Calvo}}-W^{\mathrm{flex}}=\frac{\log(1+\omega)}{1-\beta},
+$$
+
+where only the consumption path of the flexible-price reference is rescaled; hours and liquidity services remain at their reference values.
+
+The second-order local calibration uses **standard deviations** of $0.001$ for technology and $0.00025$ for the monetary-policy innovation. These are distinct from the *single-shock sizes* in the first-order IRFs. We choose these smaller uncertainty levels because the older, ten-times-larger volatility specification exhibits substantial nonlinear pricing residuals at second order.
+
+| Statistic | Flexible prices | Calvo pricing |
+|:---|---:|---:|
+| Conditional expected lifetime utility | 548.87266 | 548.73311 |
+| Unconditional expected lifetime utility | 548.91212 | 548.74881 |
+| Conditional consumption equivalent, Calvo relative to flexible | — | -0.13945% |
+| Unconditional consumption equivalent, Calvo relative to flexible | — | -0.16317% |
+
+: Second-order common-capital welfare results for the small-volatility illustration. Conditional welfare starts from the shared deterministic steady state; unconditional welfare uses the model-specific stochastic stationary distribution. The negative equivalent is the consumption reduction of the flexible-price reference that makes it as undesirable as the Calvo economy. {#tbl-second-order-welfare}
+
+## Physical-capital risk pricing
+
+The representative household prices physical capital with the stochastic discount factor $\mathcal M_{t,t+1}=\beta(C_{t+1}/C_t)^{-\sigma}$. Denoting by $R^K_{t+1}=r^k_{t+1}+1-\delta$ the gross return on the frictionlessly traded capital claim, the real risk-free return is $R_t^f=[E_t\mathcal M_{t,t+1}]^{-1}$. A correctly priced equilibrium satisfies both $E_t(\mathcal M_{t,t+1}R^K_{t+1})=1$ and
+
+$$
+E_t R^K_{t+1}-R_t^f
+=-\frac{\operatorname{Cov}_t(\mathcal M_{t,t+1},R^K_{t+1})}{E_t\mathcal M_{t,t+1}}.
+$$
+
+At the deterministic steady state and under the small-volatility calibration, Gaussian quadrature over the second-order decision rules gives the following *local* results:
+
+| Statistic | Flexible prices | Calvo pricing |
+|:---|---:|---:|
+| Expected excess gross capital return (per period) | $1.55169\times10^{-8}$ | $1.27153\times10^{-8}$ |
+| SDF covariance component (per period) | $1.55169\times10^{-8}$ | $1.26416\times10^{-8}$ |
+| Absolute capital Euler pricing residual | $2.78\times10^{-15}$ | $7.29\times10^{-11}$ |
+| Maximum residual across original expected equilibrium conditions | $7.86\times10^{-15}$ | $4.80\times10^{-9}$ |
+
+: Local capital risk premia and independent Gaussian-quadrature checks. A gross-return premium is not an equity premium; there is no separately priced firm equity claim in these simulations. {#tbl-second-order-premium}
+
+These small-volatility results pass the Euler-pricing check to a numerical error well below the estimated premium. At the **older** standard deviations ($0.01$ and $0.0025$), however, the Calvo capital Euler residual increases to $7.28\times10^{-7}$, comparable to the candidate premium, while the largest Calvo recursion residual rises to $4.85\times10^{-5}$. Thus the corresponding large-volatility numerical premium is **not** a trustworthy equilibrium calculation from a second-order approximation. The local results above should not be extrapolated to that calibration.
+
+At second order, the leading risk-premium effect is proportional to innovation variance. With constant shock covariance, its **time variation** typically enters at third order; we do not claim a reliable state-dependent conditional premium from the present second-order solution. There is also no equity premium calculation.
+
+## What remains unsolved
+
+A firm-specific-capital economy requires each firm's investment condition and capital shadow value, its optimal Calvo reset price, and the joint distribution of installed capital and relative prices. The common-capital second-order solution does **not** solve these equations, and neither four-economy welfare comparisons nor the associated difference-in-differences have been computed. The numerical evidence above answers only the common-capital sticky-versus-flexible question. The remaining mechanism cannot be approximated merely by multiplying the Phillips-curve slope.
+
+
 # Interpretation and limitations
 
-Three conclusions are supported. First, keeping the product-market markup fixed avoids a basic confound in sticky-versus-flexible comparisons. Second, capital accumulation makes the investment response visible and quantitatively substantial in the benchmark monetary experiment. Third, independent differentiation, Schur-based solution, rank diagnostics, and Euler-equation residual checks provide corroborating evidence for the local linear numerical solution.
+The first-order and local second-order results support the following conclusions. First, keeping the product-market markup fixed avoids a basic confound in sticky-versus-flexible comparisons. Second, capital accumulation makes the investment response visible and quantitatively substantial in the benchmark monetary experiment. Third, independent differentiation, Schur-based solution, rank diagnostics, and Euler-equation residual checks provide corroborating evidence for the local linear numerical solution.
 
-The scope is important. Price dispersion is absent from the first-order resource constraint at the zero-inflation steady state but generates higher-order distortions; no welfare or second-order computation is performed. The full nonlinear stochastic fiscal and money-supply system has not been solved as a distinct model. There are no investment adjustment costs and no firm-specific capital, both of which may change transmission and inflation dynamics. Determinacy is verified for **one calibration** rather than proved over a parameter region. Finally, global household portfolio feasibility and transversality conditions do not follow from the BK check alone.
+The scope is important. Price dispersion is absent from the first-order resource constraint at the zero-inflation steady state but generates higher-order distortions. A second-order common-capital equilibrium now supplies small-volatility welfare and physical-capital risk-premium calculations, subject to independently reported nonlinear residuals. The older large-volatility approximation does not pass a sufficiently accurate pricing check. The monetary-fiscal closure is specified at the level needed for local equilibrium; a global nonlinear stochastic solution and global household feasibility have not been established. The new second-order estimates still assume commonly rentable capital without investment adjustment costs. Firm-specific capital may change transmission and inflation dynamics but is not solved here. Determinacy is verified for **one calibration** rather than proved over a parameter region. Finally, global household portfolio feasibility and transversality conditions do not follow from the BK check alone.
 
 The main message is therefore conditional but clear: in a common-capital DSGE economy, introducing Calvo price-setting opportunities generates real responses to a monetary innovation that is neutral under flexible prices. In the specified benchmark, the impact effects are -0.431 percent for output and -2.275 percent for investment. These are reproducible theoretical results, not empirical estimates.
 
 # Reproducibility
 
-All equations, source code, baseline parameters, independent audit routines, and simulation outputs are available in the project repository, `Hirotaka-Fukui-Pitti-King/dsge-miu-calvo`. The solver in `src/model.py` constructs the steady state and the reduced linear system. `src/audit.py` independently validates its derivatives and Schur solution. `src/experiment.py` writes the four primary IRF data sets to `results/otkliki_*.csv`; `paper/scripts/make_figures.py` regenerates *English-language SVG figures* from those CSVs. `paper/scripts/check_results.py` tests the numerical values reported in the paper against the CSV output. The workflow runs the model tests, verifies the reported values, creates the English figures, and renders this `.qmd` source to a PDF with Quarto and Typst. On the main branch, it commits the compiled PDF into `paper/article.pdf` when the document changes. This pipeline is intended to keep the distributed manuscript tied to the verified model results.
+All equations, source code, baseline parameters, independent audit routines, and simulation outputs are available in the project repository, `Hirotaka-Fukui-Pitti-King/dsge-miu-calvo`. The solver in `src/model.py` constructs the steady state and the reduced linear system. `src/audit.py` independently validates its derivatives and Schur solution. `src/second_order.py` and `src/stage2_equilibrium.py` construct the nonlinear Calvo recursions, second-order policy and volatility tensors, welfare recursion, quadrature pricing tests, and pruned stochastic moments. `src/experiment.py` writes the four primary IRF data sets to `results/otkliki_*.csv`; `paper/scripts/make_figures.py` regenerates *English-language SVG figures* from those CSVs. `paper/scripts/check_results.py` tests the numerical values reported in the paper against the CSV output. The workflow runs the model tests, verifies the reported values (including the local second-order results), creates the English figures, and renders this `.qmd` source to a PDF with Quarto and Typst. On the main branch, it commits the compiled PDF into `paper/article.pdf` when the document changes. This pipeline is intended to keep the distributed manuscript tied to the verified model results.
 
+# Analytical second-order checks and the limits of the current model
 
-# Verified Analytical Extensions: Second-Order Price Dispersion and Firm-Level Capital Costs
+We retain these earlier analytic checks as historical diagnostics that motivated the independently solved second-order common-capital model above. The earlier diagnostic covariance computations must not be confused with the newly verified small-volatility equilibrium capital premia. The firm-specific-capital equilibrium and its welfare comparisons remain unsolved. Computing the Hessian of utility alone is not enough: second-order corrections to equilibrium allocations are essential [@schmittgroheuribe2004].
 
-This section records **partial analytical checks**, not a solved stochastic second-order equilibrium. In particular, no welfare-equivalent consumption measure or equilibrium capital/equity risk premium has yet been computed. The original first-order comparisons and their interpretation remain unchanged.
+## Price-dispersion curvature
 
-## Quadratic price dispersion
-
-Holding inherited dispersion at its zero-inflation value, the exact Calvo price index determines the reset relative price:
-
-$$
-p_t^* = \left[\frac{1-\theta\Pi_t^{\varepsilon-1}}{1-\theta}\right]^{1/(1-\varepsilon)}.
-$$
-
-Using the exact dispersion law and $\pi_t=\log \Pi_t$, a local Taylor expansion yields
+Holding inherited price dispersion at its zero-inflation stationary value, the exact Calvo price index implies
 
 $$
-\Delta_t=1+\frac{\varepsilon\theta}{2(1-\theta)}\pi_t^2+O(\pi_t^3), \qquad \Delta_{t-1}=1.
+p_t^*=\left(\frac{1-\theta\Pi_t^{\varepsilon-1}}{1-\theta}\right)^{1/(1-\varepsilon)}.
 $$
 
-The quadratic coefficient is $9$ under the benchmark $\varepsilon=6$ and $\theta=0.75$. Direct evaluation of the exact price-index and dispersion recursions confirms a zero first derivative and a second derivative of $18$. This result is conditional on the inherited state; it does not provide the full stochastic second-order law of motion.
-
-## Firm-specific capital primitives
-
-With firm-specific predetermined capital, an intermediate firm's employment required to satisfy demand $y_j$ is $n_j=(y_j/(A_t k_j^\alpha))^{1/(1-\alpha)}$. Marginal labor costs and the shadow savings from installed capital are
+Substituting into the exact dispersion recursion and writing $\pi_t=\log\Pi_t$ gives
 
 $$
-mc_j=\frac{w_t n_j}{(1-\alpha)y_j},\qquad
-\rho_j=\frac{\alpha}{1-\alpha}\frac{w_t n_j}{k_j},\qquad
-\frac{\partial\log mc_j}{\partial\log y_j}\bigg|_{k_j}=\frac{\alpha}{1-\alpha}.
+\Delta_t=1+\frac{\varepsilon\theta}{2(1-\theta)}\pi_t^2+O(\pi_t^3),\qquad \Delta_{t-1}=1.
 $$
 
-With $\Psi(I_j,k_j)=\phi_I k_j(I_j/k_j-\delta)^2/2$, the investment derivative satisfies $\Psi_{I_j}=\phi_I(I_j/k_j-\delta)$. These formulas were checked by independent finite differences. They do **not** establish an aggregate Phillips curve: an equilibrium with endogenous firm investment requires the joint distribution of prices and capital and an intertemporal shadow-value equation [@woodford2005capital].
+For the benchmark $\varepsilon=6$, $\theta=0.75$, the quadratic coefficient is $9$. Independent finite-difference calculations verify the zero first derivative and the second derivative of $18$. This **local identity** does not replace the full stochastic second-order recursion with inherited dispersion.
 
-## Leading covariance component versus priced risk premia
+![Exact price dispersion and its quadratic expansion, conditional on unit inherited dispersion.](figures/stage2_price_dispersion.svg){#fig-stage2-dispersion width=89%}
 
-Let the original linear policy functions imply conditional innovations in $\log C_{t+1}$ and $\log r_{t+1}^k$ with exposure vectors $h_c$ and $h_r$. With a diagonal shock covariance matrix $\Sigma_\epsilon$, the leading covariance component of the capital risk-premium decomposition is
+## Firm-specific capital: production-cost identities
+
+Following the distinction in @woodford2005capital, firm-specific installed capital prevents firms from renting capital freely across price vintages. Conditional on fixed installed $k_j$ and output demand $y_j$, the required employment is
 
 $$
--\frac{\operatorname{Cov}_t(\mathcal M_{t,t+1},R_{t+1}^K)}
-{E_t\mathcal M_{t,t+1}}
+n_j=\left(\frac{y_j}{A_t k_j^\alpha}\right)^{1/(1-\alpha)},\quad
+mc_j=\frac{w_t n_j}{(1-\alpha)y_j},\quad
+\frac{\partial\log mc_j}{\partial\log y_j}\bigg|_{k_j}
+=\frac{\alpha}{1-\alpha}.
+$$
+
+Under quadratic investment costs $\Psi(I_j,k_j)=\frac{\phi_I}{2}k_j(I_j/k_j-\delta)^2$, the marginal cost of investment is $\Psi_I=\phi_I(I_j/k_j-\delta)$. The investment first-order condition involves the installed-capital shadow value $q_j=1+\Psi_I$. These derivatives have been checked against independent numerical differentiation. They are **not** a solved Calvo firm-level investment policy. A distribution over firm-specific capital and price vintages must be solved before the aggregate Phillips curve, welfare, or impulse responses can be reported for this extension.
+
+## Risk-price covariance diagnostic
+
+Suppose the first-order policy functions imply conditional innovations $d\log C_{t+1}=h_c d\epsilon_{t+1}$ and $d\log r^k_{t+1}=h_r d\epsilon_{t+1}$. With a diagonal innovation covariance matrix $\Sigma_\epsilon$, the leading covariance component in the capital-premium decomposition is
+
+$$
+-\frac{\operatorname{Cov}_t(\mathcal M_{t,t+1},R^K_{t+1})}{E_t\mathcal M_{t,t+1}}
 =\sigma\bar r^k h_c\Sigma_\epsilon h_r^\top+o(\|\Sigma_\epsilon\|).
 $$
 
-For **illustrative**, not estimated, innovation standard deviations of $0.01$ (technology) and $0.0025$ (the monetary rule), this component equals $1.552\times10^{-6}$ under flexible prices and $1.264\times10^{-6}$ under Calvo pricing, in gross-return units. However, Gaussian quadrature applied to the **uncorrected first-order policies** yields asset Euler residuals of $7.04\times10^{-6}$ and $9.75\times10^{-6}$. These pricing errors exceed the covariance components. Therefore **the reported components are not equilibrium risk premia**. A valid expected-excess-return calculation must incorporate the second-order stochastic allocation and correctly priced asset claims.
+At illustrative standard deviations of $0.01$ for technology and $0.0025$ for the monetary-policy-rule shock, this term equals $1.552\times 10^{-6}$ in the flexible-price model and $1.264\times10^{-6}$ with Calvo pricing, in gross-return units. Exact Gaussian quadrature applied to the *unadjusted first-order policies* produces nonzero asset Euler residuals of $7.04\times10^{-6}$ and $9.75\times10^{-6}$, respectively. The pricing errors are larger than the reported covariance components. **These original first-order diagnostic numbers are not equilibrium risk premia**. The separate small-volatility equilibrium calculations presented above use the full second-order policy and explicit asset-pricing residual checks.
 
-A second-order solution is also needed to evaluate expected welfare and consumption-equivalent variation: simply expanding the instantaneous utility function while ignoring equilibrium mean corrections does not suffice [@schmittgroheuribe2004]. The answer to how firm-specific capital changes welfare and risk premia remains unresolved.
+![A leading covariance component computed from first-order policy exposures; it is not a priced equilibrium expected excess return.](figures/stage2_covariance_diagnostic.svg){#fig-stage2-covariance width=89%}
+
+Consequently, the numerical answer to whether firm-specific capital changes welfare costs and equilibrium premia is **not yet established**, even though the common-capital second-order comparison has been computed. The present checks identify precisely which higher-order pricing and aggregation conditions the next solution must satisfy, rather than substituting diagnostic moments for the sought equilibrium objects.
