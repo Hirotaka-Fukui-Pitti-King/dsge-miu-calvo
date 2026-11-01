@@ -365,6 +365,51 @@ At second order, the leading risk-premium effect is proportional to innovation v
 A firm-specific-capital economy requires each firm's investment condition and capital shadow value, its optimal Calvo reset price, and the joint distribution of installed capital and relative prices. The common-capital second-order solution does **not** solve these equations, and neither four-economy welfare comparisons nor the associated difference-in-differences have been computed. The numerical evidence above answers only the common-capital sticky-versus-flexible question. The remaining mechanism cannot be approximated merely by multiplying the Phillips-curve slope.
 
 
+
+# Firm-specific capital: a matched-cost first-order comparison
+
+The preceding second-order welfare and risk-premium calculations apply exclusively to the original common-rental-market economy **without investment adjustment costs**. This new exercise constructs a separate *matched-cost* first-order comparison: both capital structures face \(\Psi(I,K)=\phi_I K(I/K-\delta)^2/2\) with the illustrative \(\phi_I=4\). Hence the results here are **not** directly comparable with the original zero-adjustment-cost IRFs.
+
+We adapt the relative-price and relative-capital conditions from @woodford2005capital, equations (24), (29)--(30), (36)--(44). Woodford assumes sector-specific wages; in the current economy the wage is common across firms. Thus the elasticity of an individual firm's *relative wage* with respect to relative output is zero, while the aggregate wage remains endogenous: \(\widehat w_t=\sigma\widehat c_t+\varphi\widehat n_t\). Writing \(\omega=\alpha/(1-\alpha)\), \(h=\theta\) and \(\phi_I\) for the investment-cost curvature, the local firm rules are
+
+$
+\widetilde k_{t+1}(j)=\lambda\widetilde k_t(j)-\tau\widetilde p_t(j),
+\qquad
+\widetilde p_t^*(j)=-\psi\widetilde k_t(j),
+$
+
+where the stable root \(\lambda\) is determined by Woodford's quartic, rather than an ad hoc Phillips-curve adjustment. The implied first-order NKPC is
+
+$
+\pi_t=\beta E_t\pi_{t+1}+
+\underbrace{\frac{(1-h)(1-\beta h)}{h\Phi}}_{\xi_{\mathrm{specific}}}
+\widehat{mc}_t,
+\quad
+\Phi=1+\omega\varepsilon-
+\frac{\omega\tau h\beta}{1-h\beta\lambda}.
+$
+
+The aggregate investment Euler equation is modified consistently with the same marginal adjustment cost in both capital structures. At first order the direct resource cost of adjustment vanishes around the symmetric steady state, but its effect on marginal investment decisions does not.
+
+| Impact effect or structural coefficient | Common capital, Calvo | Firm-specific capital, Calvo |
+|---|---:|---:|
+| Phillips-curve slope | 0.085833 | 0.022173 |
+| Output, monetary-policy innovation (%) | -0.322 | -0.846 |
+| Investment, monetary-policy innovation (%) | -1.263 | -3.293 |
+| Inflation, monetary-policy innovation (percentage points) | -0.289 | -0.175 |
+| Output, technology innovation (%) | 1.064 | 0.753 |
+
+: First-order matched-adjustment-cost comparison, \(\phi_I=4\). Technology and monetary innovations are 0.01 and 0.0025 log units, respectively; these are simulated local responses, not estimated causal effects. {#tbl-stage3-first-order}
+
+![Four first-order output responses to a positive monetary policy-rule innovation. The matched flexible-price paths coincide.](figures/stage3/monetary_output.svg){#fig-stage3-output width=90%}
+
+![Investment responses to the same monetary-policy-rule innovation under matched investment adjustment costs.](figures/stage3/monetary_investment.svg){#fig-stage3-investment width=90%}
+
+The adapted relative-capital-price system has stable eigenvalues 0.74364 and 0.97264; its algebraic first-order pricing and investment conditions hold to better than \(10^{-11}\). The four reduced aggregate linear systems satisfy the Schur rank and root-count conditions for the benchmark calibration.
+
+**Interpretation and limitations.** This is a solved first-order *aggregate reduction* built on the adapted Woodford relative-price equations, **not** a numerical solution of the full nonlinear firm Bellman problem or the joint capital-price distribution. Consequently, neither firm-specific second-order welfare nor comparable capital/equity premia have been computed. The earlier common-capital CEV and premium numbers refer to a different adjustment-cost specification and cannot establish the paper's full welfare-and-asset-pricing research question.
+
+
 # Interpretation and limitations
 
 The first-order and local second-order results support the following conclusions. First, keeping the product-market markup fixed avoids a basic confound in sticky-versus-flexible comparisons. Second, capital accumulation makes the investment response visible and quantitatively substantial in the benchmark monetary experiment. Third, independent differentiation, Schur-based solution, rank diagnostics, and Euler-equation residual checks provide corroborating evidence for the local linear numerical solution.
