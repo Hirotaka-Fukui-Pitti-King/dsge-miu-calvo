@@ -4,12 +4,9 @@ import numpy as np
 from src.model import Parameters
 from src.firm_specific_capital import (
     woodford_coefficients,solve,irf,_current,_capital_euler,_q)
-from src.stage2_foundations import (firm_specific_labor as firm_labor,
-    firm_specific_marginal_cost as firm_marginal_cost,
-    firm_specific_capital_shadow as firm_capital_shadow,
-    adjustment_cost as investment_cost,
-    adjustment_marginal_investment as investment_cost_i,
-    adjustment_marginal_capital as investment_cost_k)
+from src.stage2_foundations import (
+    firm_labor, firm_marginal_cost, firm_capital_shadow,
+    investment_cost, investment_cost_i, investment_cost_k)
 
 
 class FirmSpecificFirstOrderTest(unittest.TestCase):
