@@ -1,0 +1,89 @@
+name: Сборка научной статьи на русском языке
+
+on:
+  push:
+    branches:
+      - main
+      - research/russian-quarto-typst-paper
+    paths:
+      - "paper.qmd"
+      - "src/**"
+      - "results/**"
+      - "figures/**"
+      - ".github/workflows/paper.yml"
+  pull_request:
+    paths:
+      - "paper.qmd"
+      - "src/**"
+      - "results/**"
+      - "figures/**"
+      - ".github/workflows/paper.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sborka:
+    name: Проверить модель и собрать PDF с помощью Quarto и Typst
+    runs-on: ubuntu-latest
+    steps:
+      - name: Получить исходные файлы
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Установить Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости исследования
+        run: python -m pip install -r requirements.txt
+
+      - name: Проверить уравнения и численное решение
+        run: |
+          python -m unittest discover -s tests -v
+          python -m src.audit
+
+      - name: Установить Quarto с поддержкой Typst
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Проверить наличие шрифтов с кириллицей
+        run: |
+          fc-match "DejaVu Serif"
+          test -s figures/monetary_vypusk.svg
+          test -s figures/technology_vypusk.svg
+
+      - name: Собрать статью в PDF через Typst
+        run: quarto render paper.qmd --to typst
+
+      - name: Проверить PDF и исходный файл Typst
+        run: |
+          test -s paper.pdf
+          test -s paper.typ
+          file paper.pdf
+          pdfinfo paper.pdf | head -n 20
+          pdftotext paper.pdf - | grep -q "Кальво"
+
+      - name: Сохранить PDF как артефакт запуска
+        uses: actions/upload-artifact@v4
+        with:
+          name: russkaya-statya-dsge
+          path: |
+            paper.pdf
+            paper.typ
+          if-no-files-found: error
+
+      - name: Сохранить готовые файлы в ветке репозитория
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "Сборщик научных документов"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add paper.pdf paper.typ
+          if ! git diff --cached --quiet; then
+            git commit -m "Обновить PDF и исходный файл Typst научной статьи"
+            git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
+          else
+            echo "Собранные файлы уже соответствуют сохранённой версии."
+          fi
