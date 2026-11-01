@@ -5,3 +5,8 @@ __pycache__/
 .conda/
 .DS_Store
 Thumbs.db
+
+# Временные файлы сборки научной статьи
+paper/*.pdf
+paper/*.typ
+paper/.quarto/
