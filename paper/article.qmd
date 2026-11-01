@@ -393,11 +393,11 @@ The aggregate investment Euler equation is modified consistently with the same m
 
 | Impact effect or structural coefficient | Common capital, Calvo | Firm-specific capital, Calvo |
 |---|---:|---:|
-| Phillips-curve slope | 0.085833 | 0.022173 |
-| Output, monetary-policy innovation (%) | -0.322 | -0.846 |
-| Investment, monetary-policy innovation (%) | -1.263 | -3.293 |
-| Inflation, monetary-policy innovation (percentage points) | -0.289 | -0.175 |
-| Output, technology innovation (%) | 1.064 | 0.753 |
+| Phillips-curve slope | 0.085833 | 0.022894 |
+| Output, monetary-policy innovation (%) | -0.322 | -0.832 |
+| Investment, monetary-policy innovation (%) | -1.263 | -3.236 |
+| Inflation, monetary-policy innovation (percentage points) | -0.289 | -0.179 |
+| Output, technology innovation (%) | 1.064 | 0.764 |
 
 : First-order matched-adjustment-cost comparison, \(\phi_I=4\). Technology and monetary innovations are 0.01 and 0.0025 log units, respectively; these are simulated local responses, not estimated causal effects. {#tbl-stage3-first-order}
 
@@ -405,7 +405,7 @@ The aggregate investment Euler equation is modified consistently with the same m
 
 ![Investment responses to the same monetary-policy-rule innovation under matched investment adjustment costs.](figures/stage3/monetary_investment.svg){#fig-stage3-investment width=90%}
 
-The adapted relative-capital-price system has stable eigenvalues 0.74364 and 0.97264; its algebraic first-order pricing and investment conditions hold to better than \(10^{-11}\). The four reduced aggregate linear systems satisfy the Schur rank and root-count conditions for the benchmark calibration.
+The adapted relative-capital-price system has stable eigenvalues 0.73227 and 0.95155; its algebraic first-order pricing and investment conditions hold to better than \(10^{-11}\). The four reduced aggregate linear systems satisfy the Schur rank and root-count conditions for the benchmark calibration.
 
 **Interpretation and limitations.** This is a solved first-order *aggregate reduction* built on the adapted Woodford relative-price equations, **not** a numerical solution of the full nonlinear firm Bellman problem or the joint capital-price distribution. Consequently, neither firm-specific second-order welfare nor comparable capital/equity premia have been computed. The earlier common-capital CEV and premium numbers refer to a different adjustment-cost specification and cannot establish the paper's full welfare-and-asset-pricing research question.
 

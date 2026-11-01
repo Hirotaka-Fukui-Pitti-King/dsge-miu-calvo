@@ -36,8 +36,10 @@ def woodford_coefficients(p: Parameters, adjustment: float) -> SpecificCoefficie
     b, h, eps = p.beta, p.theta, p.epsilon
     # Производственная эластичность: не путать с вероятностью Кальво.
     omega = p.alpha / (1 - p.alpha)
-    rho_y = omega
-    rho_k = omega
+    # Теневая отдача капитала по выпуску: 1/(1-alpha),
+    # отличать от alpha/(1-alpha) для предельных издержек.
+    rho_y = 1.0 / (1 - p.alpha)
+    rho_k = rho_y
     xi_capital = (1 - b * (1 - p.delta)) * rho_y * eps / adjustment
     L = Poly([0.0, 1.0])
     Q = Poly([b, -(1 + b + (1-b*(1-p.delta))*rho_k/adjustment), 1.0])
