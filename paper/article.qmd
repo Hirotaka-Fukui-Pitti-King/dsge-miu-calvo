@@ -99,13 +99,13 @@ Y_t=\left(\int_0^1Y_t(j)^{(\varepsilon-1)/\varepsilon}\,dj\right)^{\varepsilon/(
 Y_t(j)=\left(\frac{P_t(j)}{P_t}\right)^{-\varepsilon}Y_t.
 $$
 
-Intermediate producer $j$ uses $Y_t(j)=A_tK_t(j)^\alpha N_t(j)^{1-\alpha}$. Labor and installed capital services can be reallocated across firms each period. Competitive factor markets imply common real marginal cost $mc_t$ and
+Intermediate producer $j$ uses $Y_t(j)=A_t\,K_t(j)^{\alpha}\,N_t(j)^{1-\alpha}$. Labor and installed capital services can be reallocated across firms each period. Competitive factor markets imply common real marginal cost $mc_t$ and
 
 $$
 \begin{aligned}
 w_t&=mc_t(1-\alpha)\frac{Y_t\Delta_t}{N_t},\\
 r_t^k&=mc_t\alpha\frac{Y_t\Delta_t}{K_t},\\
-Y_t&=\frac{A_tK_t^\alpha N_t^{1-\alpha}}{\Delta_t},
+Y_t&=\frac{A_t\,K_t^{\alpha}\,N_t^{1-\alpha}}{\Delta_t},
 \qquad
 \Delta_t\equiv\int_0^1\left(\frac{P_t(j)}{P_t}\right)^{-\varepsilon}dj.
 \end{aligned}
