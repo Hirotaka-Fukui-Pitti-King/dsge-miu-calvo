@@ -28,3 +28,4 @@ jobs:
           python -m src.experiment
           python -m src.stage2_foundations
           python -m src.stage3_experiment
+          python -m src.stage4b_experiment
