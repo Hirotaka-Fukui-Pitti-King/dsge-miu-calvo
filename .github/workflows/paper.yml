@@ -51,6 +51,8 @@ jobs:
 
       - name: Проверить наличие шрифтов с кириллицей
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends poppler-utils fonts-dejavu-core
           fc-match "DejaVu Serif"
           test -s figures/monetary_vypusk.svg
           test -s figures/technology_vypusk.svg
@@ -64,7 +66,7 @@ jobs:
           test -s paper.typ
           file paper.pdf
           pdfinfo paper.pdf | head -n 20
-          pdftotext paper.pdf - | grep -q "Кальво"
+          pdftotext paper.pdf - | grep "Кальво" >/dev/null
 
       - name: Сохранить PDF как артефакт запуска
         uses: actions/upload-artifact@v4
